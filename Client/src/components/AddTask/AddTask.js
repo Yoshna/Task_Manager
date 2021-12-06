@@ -34,6 +34,30 @@ const AddTask = (props) => {
     };
     // console.log(task.deadline);
     // console.log(typeof(task.deadline));
+    if (taskLabel.trim() === "") {
+      const errorLine = (
+        <p
+          style={{
+            color: "red",
+          }}
+        >
+          Enter Task Label
+        </p>
+      );
+      setError(errorLine);
+    }
+    if (taskDeadline.trim() === "") {
+      const errorLine = (
+        <p
+          style={{
+            color: "red",
+          }}
+        >
+          Enter Task Deadline
+        </p>
+      );
+      setError(errorLine);
+    }
     if (task.deadline < new Date()) {
       //   console.log("error");
       const errorLine = (
@@ -52,10 +76,14 @@ const AddTask = (props) => {
         navigate("/");
       });
     }
+    setTimeout(() => {
+      setError(null);
+    }, 5000);
   };
 
   return (
     <div className={classes.AddTask}>
+      {error}
       <h1>Add A Task</h1>
       <form>
         <label>Task Label</label>
@@ -70,7 +98,6 @@ const AddTask = (props) => {
           value={taskDeadline}
           onChange={taskDeadlineHandler}
         ></input>
-        {error}
         <button onClick={addTaskHandler}>Add</button>
       </form>
     </div>
