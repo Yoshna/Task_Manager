@@ -9,9 +9,12 @@ const Tasks = (props) => {
     axios.get("/tasks").then((res) => {
       let newTaskArr = [];
       res.data.map((data) => {
+        // console.log(data.deadline);
+        const newDeadline = JSON.stringify(data.deadline).substring(1, 11);
+        // console.log(newDeadline);
         const task = {
           label: data.label,
-          deadline: data.deadline,
+          deadline: newDeadline,
           id: data._id,
           isDone: data.isDone,
         };
@@ -31,7 +34,7 @@ const Tasks = (props) => {
     });
   };
   const deleteHandler = (id) => {
-    console.log(id);
+    // console.log(id);
     axios.delete(`/tasks/${id}`).then((res) => {
       const newTaskArr = taskArr.filter((task) => task.id !== id);
       setTaskArr(newTaskArr);

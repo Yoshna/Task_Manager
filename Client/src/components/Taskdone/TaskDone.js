@@ -6,13 +6,15 @@ const TaskDone = (props) => {
   const [tasksArr, setTaskArr] = useState([]);
   useEffect(() => {
     axios.get("/tasks").then((res) => {
-      console.log(res);
       let newTasks = [];
       res.data.map((data) => {
+        // console.log(data.deadline);
+        const newDeadline = JSON.stringify(data.deadline).substring(1, 11);
+        // console.log(newDeadline);
         if (data.isDone) {
           const task = {
             label: data.label,
-            deadline: data.deadline,
+            deadline: newDeadline,
             id: data._id,
             isDone: true,
           };

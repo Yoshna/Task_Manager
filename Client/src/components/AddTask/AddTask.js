@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 const AddTask = (props) => {
   const [taskLabel, setTaskLabel] = useState("");
   const [taskDeadline, setTaskDeadline] = useState("");
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -18,19 +19,39 @@ const AddTask = (props) => {
     setTaskLabel(event.target.value);
   };
   const taskDeadlineHandler = (event) => {
+    // console.log(event.target.value);
     setTaskDeadline(event.target.value);
   };
+
+  //   let errorLine = null;
 
   const addTaskHandler = (event) => {
     event.preventDefault();
     const task = {
       label: taskLabel,
-      deadline: taskDeadline,
+      deadline: new Date(taskDeadline),
       isDone: false,
     };
-    axios.post("/tasks", task).then((res) => {
-      navigate("/");
-    });
+    // console.log(task.deadline);
+    // console.log(typeof(task.deadline));
+    if (task.deadline < new Date()) {
+      //   console.log("error");
+      const errorLine = (
+        <p
+          style={{
+            color: "red",
+          }}
+        >
+          Enter date which is after today's date
+        </p>
+      );
+      setError(errorLine);
+      //   console.log("errorsss");
+    } else {
+      axios.post("/tasks", task).then((res) => {
+        navigate("/");
+      });
+    }
   };
 
   return (
@@ -49,6 +70,7 @@ const AddTask = (props) => {
           value={taskDeadline}
           onChange={taskDeadlineHandler}
         ></input>
+        {error}
         <button onClick={addTaskHandler}>Add</button>
       </form>
     </div>

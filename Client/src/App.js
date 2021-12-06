@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
 import Tasks from "./container/Tasks/Tasks";
 import AddTask from "./components/AddTask/AddTask";
-import TaskDone from "./components/TaskDone/TaskDone";
+import TaskDone from "./components/Taskdone/TaskDone";
 const App = (props) => {
   const routes = (
     <Routes>

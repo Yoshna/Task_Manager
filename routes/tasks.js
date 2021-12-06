@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 const Task = require("../models/tasks");
+const { validateTasks } = require("../validation/validation");
 
 router.get("/", async (req, res) => {
   const tasks = await Task.find({});
@@ -9,10 +10,12 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  //   if (error) {
-  //     res.status(400).send(error.message);
-  //     return;
-  //   }
+  console.log(req.body);
+  const { error } = validateTasks(req.body);
+  if (error) {
+    res.status(400).send(error.message);
+    return;
+  }
   let task = new Task({
     ...req.body,
   });
