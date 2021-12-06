@@ -1,0 +1,23 @@
+.Task {
+  width: 80%;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+.TaskLabel {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.Task button {
+  font: inherit;
+  padding: 5px;
+  margin: 0 10px;
+  width: 80px;
+  border: 1px solid;
+  cursor: pointer;
+  outline: none;
+}
