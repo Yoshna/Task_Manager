@@ -9,7 +9,8 @@ const TaskDone = (props) => {
       let newTasks = [];
       res.data.map((data) => {
         // console.log(data.deadline);
-        const newDeadline = JSON.stringify(data.deadline).substring(1, 11);
+        let newDeadline = new Date(data.deadline);
+        newDeadline = newDeadline.toLocaleDateString();
         // console.log(newDeadline);
         if (data.isDone) {
           const task = {
@@ -37,7 +38,12 @@ const TaskDone = (props) => {
     ));
   }
 
-  return <div className={classes.TaskDone}>{tasks}</div>;
+  return (
+    <div className={classes.TaskDone}>
+      <h1>Tasks Done</h1>
+      {tasks}
+    </div>
+  );
 };
 
 export default TaskDone;

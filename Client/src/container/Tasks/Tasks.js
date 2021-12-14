@@ -10,7 +10,8 @@ const Tasks = (props) => {
       let newTaskArr = [];
       res.data.map((data) => {
         // console.log(data.deadline);
-        const newDeadline = JSON.stringify(data.deadline).substring(1, 11);
+        let newDeadline = new Date(data.deadline);
+        newDeadline = newDeadline.toLocaleDateString();
         // console.log(newDeadline);
         const task = {
           label: data.label,

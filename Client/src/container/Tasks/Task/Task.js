@@ -4,14 +4,7 @@ const Task = (props) => {
   if (!props.isDone) {
     buttons = (
       <div>
-        <button
-          style={{
-            margin: "0 0 0 300px",
-          }}
-          onClick={props.done}
-        >
-          Done
-        </button>
+        <button onClick={props.done}>Done</button>
         <button onClick={props.delete}>Delete</button>
       </div>
     );

@@ -3,27 +3,56 @@ const express = require("express");
 const router = express.Router();
 const Task = require("../models/tasks");
 const { validateTasks } = require("../validation/validation");
+const { login } = require("../middleware/auth");
+const User = require("../models/user");
 
-router.get("/", async (req, res) => {
-  const tasks = await Task.find({});
+// const login = (req, res, next) => {
+//   console.log(req.user);
+//   console.log("fefefe");
+
+//   if (!req.user) {
+//     return res.status(401).json({ body: null, error: "Login to continue" });
+//   } else {
+//     next();
+//   }
+// };
+
+router.get("/", login, async (req, res) => {
+  let tasks = await User.findById(req.user._id)
+    .populate("tasks")
+    .select("tasks");
+  //console.log(tasks);
+  tasks = tasks.tasks;
+  // console.log(tasks);
   res.send(tasks);
 });
 
-router.post("/", async (req, res) => {
-  console.log(req.body);
-  const { error } = validateTasks(req.body);
-  if (error) {
-    res.status(400).send(error.message);
-    return;
+router.post("/", login, async (req, res) => {
+  // console.log(req.body);
+  try {
+    console.log("hhcdkd");
+    const { error } = validateTasks(req.body);
+    if (error) {
+      console.log(error);
+      res.status(400).send(error.message);
+      return;
+    }
+  } catch (err) {
+    console.log(err);
   }
+  let user = await User.findById(req.body.userId);
+  let array = [...user?.tasks];
   let task = new Task({
     ...req.body,
   });
   task = await task.save();
+  array.push(task._id);
+  user.tasks = array;
+  await user.save();
   res.send(task);
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", login, async (req, res) => {
   const task = await Task.findByIdAndUpdate(
     req.params.id,
     {
@@ -42,7 +71,7 @@ router.put("/:id", async (req, res) => {
   res.send(task);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", login, async (req, res) => {
   const task = await Task.findByIdAndDelete(req.params.id);
   if (!task) {
     res.status(400).send("Task not present");

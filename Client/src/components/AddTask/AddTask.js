@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./AddTask.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
@@ -9,11 +9,13 @@ const AddTask = (props) => {
 
   const navigate = useNavigate();
 
-  //   useEffect(() => {
-  //     axios.get("/tasks").then((res) => {
-  //       res.data.map((data) => console.log(data.label));
-  //     });
-  //   }, []);
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+  }, [error]);
 
   const taskLabelHandler = (event) => {
     setTaskLabel(event.target.value);
@@ -25,12 +27,15 @@ const AddTask = (props) => {
 
   //   let errorLine = null;
 
-  const addTaskHandler = (event) => {
+  const addTaskHandler = async (event) => {
     event.preventDefault();
+    const res = await axios.get("/auth/login");
+    // console.log(res);
     const task = {
       label: taskLabel,
       deadline: new Date(taskDeadline),
       isDone: false,
+      userId: res.data._id,
     };
     // console.log(task.deadline);
     // console.log(typeof(task.deadline));
@@ -76,9 +81,9 @@ const AddTask = (props) => {
         navigate("/");
       });
     }
-    setTimeout(() => {
-      setError(null);
-    }, 5000);
+    // setTimeout(() => {
+    //   setError(null);
+    // }, 5000);
   };
 
   return (
