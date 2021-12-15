@@ -31,12 +31,35 @@ const AddTask = (props) => {
     event.preventDefault();
     const res = await axios.get("/auth/login");
     // console.log(res);
+    // console.log(taskDeadline);
     const task = {
       label: taskLabel,
       deadline: new Date(taskDeadline),
       isDone: false,
       userId: res.data._id,
     };
+    // console.log(task.deadline);
+    // const d = new Date();
+    // console.log(d);
+    // let de = new Date(task.deadline);
+    // de = de.setHours(23);
+    // console.log((de - d.getTime()) / 1000 / 60 / 60);
+    // const t = de - d.getTime();
+    // console.log(t);
+    // console.log(de);
+    // console.log("okay");
+    // const n = task.deadline.getTime() - d.getTime();
+    // console.log(task.deadline.getTime());
+    // console.log(d.getTime());
+    // console.log(n);
+    // const s = n / 1000;
+    // const m = s / 60;
+    // const h = m / 60;
+    // console.log(s);
+    // console.log(m);
+    // console.log(h);
+    // console.log(h / 24);
+
     // console.log(task.deadline);
     // console.log(typeof(task.deadline));
     if (taskLabel.trim() === "") {

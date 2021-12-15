@@ -30,7 +30,7 @@ router.get("/", login, async (req, res) => {
 router.post("/", login, async (req, res) => {
   // console.log(req.body);
   try {
-    console.log("hhcdkd");
+    // console.log("hhcdkd");
     const { error } = validateTasks(req.body);
     if (error) {
       console.log(error);

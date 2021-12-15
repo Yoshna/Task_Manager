@@ -9,13 +9,15 @@ const Tasks = (props) => {
     axios.get("/tasks").then((res) => {
       let newTaskArr = [];
       res.data.map((data) => {
-        // console.log(data.deadline);
         let newDeadline = new Date(data.deadline);
         newDeadline = newDeadline.toLocaleDateString();
+        let timel = JSON.stringify(data.deadline).substring(1, 11);
+        // console.log(timel);
         // console.log(newDeadline);
         const task = {
           label: data.label,
           deadline: newDeadline,
+          timeleft: timel,
           id: data._id,
           isDone: data.isDone,
         };
@@ -28,7 +30,7 @@ const Tasks = (props) => {
   }, []);
 
   const doneHandler = (id) => {
-    console.log(id);
+    // console.log(id);
     axios.put(`/tasks/${id}`).then((res) => {
       const newTaskArr = taskArr.filter((task) => task.id !== id);
       setTaskArr(newTaskArr);
@@ -49,6 +51,7 @@ const Tasks = (props) => {
       <Task
         key={task.id}
         deadline={task.deadline}
+        timeleft={task.timeleft}
         label={task.label}
         done={() => doneHandler(task.id)}
         delete={() => deleteHandler(task.id)}

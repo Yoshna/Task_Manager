@@ -27,10 +27,10 @@ router.get("/logout", (req, res) => {
   res.redirect(`${process.env.CLIENT_URL}/`);
 });
 
-router.get("/", async (req, res) => {
-  const user = await User.find({}).populate("tasks").exec();
-  console.log(user);
-  res.send(user);
-});
+// router.get("/", async (req, res) => {
+//   const user = await User.find({}).populate("tasks").exec();
+//   console.log(user);
+//   res.send(user);
+// });
 
 module.exports = router;
