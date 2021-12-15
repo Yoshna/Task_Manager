@@ -5,7 +5,7 @@ import countdown from "countdown";
 import "moment-countdown";
 
 const Task = (props) => {
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState("");
   let buttons = null;
   if (!props.isDone) {
     buttons = (

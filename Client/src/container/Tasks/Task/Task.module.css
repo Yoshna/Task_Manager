@@ -25,3 +25,7 @@
   flex-direction: column;
   align-self: flex-end; */
 }
+
+.Task span {
+  font-weight: bold;
+}
