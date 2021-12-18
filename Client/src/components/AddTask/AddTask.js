@@ -92,7 +92,9 @@ const AddTask = (props) => {
       );
       setError(errorLine);
     }
-    const [hour, min] = task.reminderTime.split(":");
+    const [hour, min] = task.reminderTime
+      ? task.reminderTime.split(":")
+      : [11, 59];
     let date = new Date(task.deadline);
     date.setHours(hour);
     date.setMinutes(min);
