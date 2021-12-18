@@ -97,7 +97,7 @@ const AddTask = (props) => {
     date.setHours(hour);
     date.setMinutes(min);
     const today = new Date();
-    // console.log(date, today);
+    console.log(date, today);
     if (date < today) {
       //   console.log("error");
       const errorLine = (
