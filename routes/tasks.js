@@ -51,6 +51,7 @@ router.post("/", login, async (req, res) => {
     console.log(time);
     console.log(time.toUTCString());
     console.log(new Date(time.toUTCString()));
+    console.log(new Date(`${timel}T${req.body.reminderTime}:00`).toUTCString());
     schedule.scheduleJob(`${timel}T${req.body.reminderTime}:00`, () => {
       console.log("emailll ", new Date(), req.body.label);
       transporter.sendMail(mailOptions, (error, info) => {
