@@ -51,7 +51,7 @@ const Navigation = (props) => {
         </div>
         <div className={classes.NavigationItem}>
           <NavLink
-            to="/tasks"
+            to="/taskss"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             My Tasks
