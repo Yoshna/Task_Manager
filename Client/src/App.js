@@ -23,7 +23,7 @@ const App = (props) => {
     <Routes>
       <Route path="/addtask" element={<Login />} />
       <Route path="/taskdone" element={<Login />} />
-      <Route path="/tasks" element={<Login />} />
+      <Route path="/taskss" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Home />} />
     </Routes>
@@ -34,7 +34,7 @@ const App = (props) => {
       <Routes>
         <Route path="/addtask" element={<AddTask />} />
         <Route path="/taskdone" element={<TaskDone />} />
-        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/taskss" element={<Tasks />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/" element={<Home />} />
