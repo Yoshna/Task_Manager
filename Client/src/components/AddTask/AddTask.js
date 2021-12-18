@@ -92,7 +92,11 @@ const AddTask = (props) => {
       );
       setError(errorLine);
     }
-    if (task.deadline < new Date()) {
+    const [hour, min] = task.reminderTime.split(":");
+    let date = new Date(task.deadline);
+    date.setHours(hour);
+    date.setMinutes(min);
+    if (date < new Date()) {
       //   console.log("error");
       const errorLine = (
         <p
