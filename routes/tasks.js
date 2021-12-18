@@ -48,7 +48,7 @@ router.post("/", login, async (req, res) => {
     const timel = JSON.stringify(req.body.deadline).substring(1, 11);
 
     schedule.scheduleJob(`${timel}T${req.body.reminderTime}:00`, () => {
-      // console.log("emailll " + new Date().toLocaleString() + req.body.label);
+      console.log("emailll ", new Date(), req.body.label);
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log(error);
