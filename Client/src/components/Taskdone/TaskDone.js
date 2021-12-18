@@ -26,6 +26,14 @@ const TaskDone = (props) => {
     });
   }, []);
 
+  const deleteHandler = (id) => {
+    // console.log(id);
+    axios.delete(`/tasks/${id}`).then((res) => {
+      const newTaskArr = tasksArr.filter((task) => task.id !== id);
+      setTaskArr(newTaskArr);
+    });
+  };
+
   let tasks = [];
   if (tasksArr.length > 0) {
     tasks = tasksArr.map((task) => (
@@ -34,6 +42,7 @@ const TaskDone = (props) => {
         deadline={task.deadline}
         label={task.label}
         isDone={task.isDone}
+        delete={() => deleteHandler(task.id)}
       ></Task>
     ));
   }

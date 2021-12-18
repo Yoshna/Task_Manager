@@ -11,6 +11,7 @@
   align-items: center;
   margin: 5px 0;
   justify-content: space-between;
+  font-weight: bold;
 }
 
 .Task button {
@@ -24,8 +25,4 @@
   /* display: flex;
   flex-direction: column;
   align-self: flex-end; */
-}
-
-.Task span {
-  font-weight: bold;
 }

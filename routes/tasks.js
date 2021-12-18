@@ -5,6 +5,8 @@ const Task = require("../models/tasks");
 const { validateTasks } = require("../validation/validation");
 const { login } = require("../middleware/auth");
 const User = require("../models/user");
+const schedule = require("node-schedule");
+const nodemailer = require("nodemailer");
 
 // const login = (req, res, next) => {
 //   console.log(req.user);
@@ -28,7 +30,38 @@ router.get("/", login, async (req, res) => {
 });
 
 router.post("/", login, async (req, res) => {
-  // console.log(req.body);
+  if (req.body.reminderTime) {
+    const date = JSON.stringify(req.body.deadline).substring(1, 11);
+    const mailOptions = {
+      from: "dev.yoshnam@gmail.com",
+      to: req.user.emailId,
+      subject: "Email from Task Manager",
+      text: `You have ${req.body.label} scheduled on ${date} `,
+    };
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "dev.yoshnam@gmail.com",
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+    const timel = JSON.stringify(req.body.deadline).substring(1, 11);
+
+    schedule.scheduleJob(`${timel}T${req.body.reminderTime}:00`, () => {
+      // console.log("emailll " + new Date().toLocaleString() + req.body.label);
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email send: " + info.response);
+        }
+      });
+    });
+  }
+  //console.log(req.body.reminderTime);
+  // console.log(timel);
+  // const s = new Date().getMinutes();
+  // console.log(s);
   try {
     // console.log("hhcdkd");
     const { error } = validateTasks(req.body);

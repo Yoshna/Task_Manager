@@ -21,6 +21,9 @@ const App = (props) => {
   }, []);
   let routes = (
     <Routes>
+      <Route path="/addtask" element={<Login />} />
+      <Route path="/taskdone" element={<Login />} />
+      <Route path="/tasks" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Home />} />
     </Routes>

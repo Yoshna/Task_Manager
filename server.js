@@ -10,6 +10,8 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const users = require("./routes/user");
+require("./start")();
+const path = require("path");
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -68,6 +70,13 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/tasks", tasks);
 app.use("/auth", users);
+
+app.use(express.static(path.resolve(__dirname, "Client", "build")));
+
+app.get("/*", (req, res) => {
+  // res.sendFile("index.html");
+  res.sendFile(path.resolve(__dirname, "Client", "build", "index.html"));
+});
 
 const port = process.env.PORT || 5000;
 

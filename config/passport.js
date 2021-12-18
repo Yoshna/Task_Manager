@@ -11,7 +11,7 @@ passport.use(
       callbackURL: `${process.env.SERVER_URL}/auth/google/redirect`,
     },
     async (accessToken, refreshToken, profile, done) => {
-      //   console.log(profile);
+      //console.log(profile);
       let user = await User.findOne({ googleId: profile.id });
       if (user) {
         done(null, user, { message: "Already present" });
@@ -21,6 +21,7 @@ passport.use(
         user = new User({
           name: profile.displayName,
           googleId: profile.id,
+          emailId: profile.emails[0].value,
           //   tasks: tasks,
         });
         await user.save();

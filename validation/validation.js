@@ -6,6 +6,7 @@ exports.validateTasks = (body) => {
     deadline: Joi.date().required(),
     isDone: Joi.boolean(),
     userId: Joi.string(),
+    reminderTime: Joi.string().allow("", null),
   });
   return schema.validate(body);
 };

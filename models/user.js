@@ -10,6 +10,10 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task" }],
+  emailId: {
+    type: String,
+    required: true,
+  },
 });
 
 const User = mongoose.model("user", userSchema);

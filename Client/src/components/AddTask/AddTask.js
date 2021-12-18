@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 const AddTask = (props) => {
   const [taskLabel, setTaskLabel] = useState("");
   const [taskDeadline, setTaskDeadline] = useState("");
+  const [reminderTime, setReminderTime] = useState("");
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -24,6 +25,10 @@ const AddTask = (props) => {
     // console.log(event.target.value);
     setTaskDeadline(event.target.value);
   };
+  const reminderTimeHandler = (event) => {
+    // console.log(event.target.value);
+    setReminderTime(event.target.value);
+  };
 
   //   let errorLine = null;
 
@@ -37,6 +42,7 @@ const AddTask = (props) => {
       deadline: new Date(taskDeadline),
       isDone: false,
       userId: res.data._id,
+      reminderTime: reminderTime,
     };
     // console.log(task.deadline);
     // const d = new Date();
@@ -125,6 +131,12 @@ const AddTask = (props) => {
           type="date"
           value={taskDeadline}
           onChange={taskDeadlineHandler}
+        ></input>
+        <label>Reminder Time</label>
+        <input
+          type="time"
+          value={reminderTime}
+          onChange={reminderTimeHandler}
         ></input>
         <button onClick={addTaskHandler}>Add</button>
       </form>

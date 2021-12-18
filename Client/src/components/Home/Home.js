@@ -1,46 +1,55 @@
 import classes from "./Home.module.css";
-// import { useState, useEffect } from "react";
-// import moment from "moment";
-// import countdown from "countdown";
-// import "moment-countdown";
+import { useState, useEffect } from "react";
+import moment from "moment";
+import countdown from "countdown";
+import "moment-countdown";
 
 const Home = (props) => {
-  // const [time, setTime] = useState(0);
-  // const startDate = new Date();
+  // const [rDay, setRDay] = useState(0);
   // const [rHour, setRHour] = useState(0);
   // const [rMin, setRMin] = useState(0);
   // const [rSec, setRSec] = useState(0);
 
   // const getTime = (endTime) => {
   //   const finishHours =
-  //     moment(endTime).hour() +
-  //     moment(endTime).minute() / 60 +
-  //     moment(endTime).second() / 3600;
-  //   console.log(finishHours);
-  //   console.log(moment(endTime).hour());
-  //   console.log(moment(endTime).date());
-  //   console.log(moment(endTime).minute());
-  //   console.log(moment(endTime).second());
-  //   const currentHours =
-  //     moment().hour() + moment().minute() / 60 + moment().second() / 3600;
-  //   console.log(currentHours);
-  //   console.log(moment().hour());
-  //   console.log(moment().minute());
-  //   console.log(moment().second());
-  //   const datehr = (moment(endTime).date() - moment().date()) * 24;
-  //   console.log(datehr);
-  //   const remainingHours = finishHours - currentHours + datehr;
+  //     new Date(endTime).getHours() +
+  //     new Date(endTime).getMinutes() / 60 +
+  //     new Date(endTime).getSeconds() / 3600;
+  // console.log(finishHours);
+  // console.log(new Date(endTime).getHours());
+  // console.log(new Date(endTime).getMinutes());
+  // console.log(new Date(endTime).getSeconds());
+  // console.log(new Date(endTime).getDate());
+
+  // const currentHours =
+  //   new Date().getHours() +
+  //   new Date().getMinutes() / 60 +
+  //   new Date().getSeconds() / 3600;
+  // console.log(currentHours);
+  // console.log(new Date().getHours());
+  // console.log(new Date().getMinutes());
+  // console.log(new Date().getSeconds());
+  // console.log(new Date().getDate());
+  //   const datediff = new Date(endTime).getDate() - new Date().getDate();
+  //   const remainingHours = finishHours - currentHours + datediff * 24;
 
   //   const remainingHour = Math.floor(remainingHours);
+  //   let hours = 0;
+  //   let days = 0;
+  //   if (remainingHour > 24) {
+  //     days = Math.floor(remainingHour / 24);
+  //     hours = remainingHour - 24 * days;
+  //   }
   //   const remainingMinute = Math.floor((remainingHours - remainingHour) * 60);
   //   const remainingSecond = Math.floor(
   //     ((remainingHours - remainingHour) * 60 - remainingMinute) * 60
   //   );
 
-  //   setRHour(remainingHour);
+  //   setRDay(days);
+  //   setRHour(hours);
   //   setRMin(remainingMinute);
   //   setRSec(remainingSecond);
-  //   console.log("count");
+  //   // console.log("count");
   // };
 
   // const getTime = () => {
@@ -50,12 +59,9 @@ const Home = (props) => {
 
   // useEffect(() => {
   //   setInterval(() => {
-  //     // let endTime = moment("2021-12-16").format();
+  //     let endTime = new Date("2021-12-17T23:59:59");
   //     // console.log(endTime);
-  //     // // endTime = endTime.setHours(23);
-  //     // // console.log(endTime);
-  //     // getTime(endTime);
-  //     getTime();
+  //     getTime(endTime);
   //   }, 1000);
   // }, []);
 
@@ -73,6 +79,8 @@ const Home = (props) => {
       </p>
       {/* <p>{time}</p> */}
       {/* <div>
+        <span>{("0" + rDay).slice(-2)}</span>
+        <span>:</span>
         <span>{("0" + rHour).slice(-2)}</span>
         <span>:</span>
         <span>{("0" + rMin).slice(-2)}</span>

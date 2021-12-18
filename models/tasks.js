@@ -14,6 +14,9 @@ const taskSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  reminderTime: {
+    type: String,
+  },
 });
 
 const Task = mongoose.model("Task", taskSchema);
