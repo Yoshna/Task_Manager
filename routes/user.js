@@ -11,7 +11,7 @@ router.get(
 );
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
   //   console.log(req.user);
-  //   console.log("vvfvfv");
+  // console.log("vvfvfv");
   res.redirect(`${process.env.CLIENT_URL}/taskss`);
 });
 
