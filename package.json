@@ -6,13 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "render-postbuild": "cd Client && npm i && npm run build"
+      "server": "nodemon server.js",
+      "client": "npm start --prefix Client",
+      "clientinstall": "npm install --prefix Client",
+      "dev": "concurrently \"npm run server\" \"npm run client\"",
+      "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix Client && npm run build -- prefix Client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@joi/date": "^2.1.0",
+    "concurrently": "^7.6.0",
     "connect-mongo": "^4.6.0",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
