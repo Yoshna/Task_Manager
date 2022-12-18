@@ -2,6 +2,10 @@
 
 ## 1. Methodology
 
+<h1>
+<img alt="logo" src="./methodolgy.png" width="500px"/>
+</h1>
+
 ## 2. Description
 
 Task Manager is a web application that allows users to manage their daily tasks easily and on priority basis.It maintains a countdown for deadlines of tasks and also sends a reminder to the user on mail about the deadlinewhich is donw using node mailer scheduler. It has Google OAuth for authentication and authorization, uses Express as a minimal and flexible framework for Node.js and hass MongoDB (No SQL) database.
